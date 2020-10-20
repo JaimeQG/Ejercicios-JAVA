@@ -29,6 +29,8 @@ public class Ejercicio5 {
 				// i += 1;
 				System.out.println("¿Quiere introducir más notas (S/N?");
 				// TODO capturar respuesta
+
+				respuesta = "S";
 				switch (respuesta.toUpperCase()) {
 				case "S":
 					break;

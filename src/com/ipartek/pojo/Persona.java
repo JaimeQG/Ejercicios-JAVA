@@ -2,20 +2,24 @@ package com.ipartek.pojo;
 
 public class Persona {
 
-	static final int EDAD_MINIMA = 0;
-	static final int EDAD_MAXIMA = 120;
+	// Constantes
+	public static final int EDAD_MINIMA = 0;
+	public static final int EDAD_MAXIMA = 120;
 
+	// Atributos
 	private String nombre;
 	private int edad;
 
 	// Constructores
 	/////////////////////////////////
+	// Constructor por defecto (se llaman igual que la clase)
 	public Persona() {
 		super();
 		this.nombre = "Sin nombre";
-		this.edad = 0;
+		this.edad = EDAD_MINIMA;
 	}
 
+	// getters y setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -30,13 +34,16 @@ public class Persona {
 
 	public void setEdad(int edad) throws Exception {
 		if (edad < EDAD_MINIMA || edad > EDAD_MAXIMA) {
-			// TODO como aplicar formato String
-			// throw new Exception((new String("La edad no es correcta. Valores permitidos
-			// %s %s", EDAD_MINIMA, EDAD_MAXIMA));
-			throw new Exception("La edad no es correcta.");
+
+			throw new Exception(String.format("*** ERROR: El rango de edad debe ser %s %s", EDAD_MINIMA, EDAD_MAXIMA));
 		} else {
 			this.edad = edad;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", edad=" + edad + "]";
 	}
 
 }

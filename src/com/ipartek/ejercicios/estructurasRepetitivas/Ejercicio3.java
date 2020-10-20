@@ -32,6 +32,7 @@ public class Ejercicio3 {
 
 			// TODO capturar la opción introducida por el usuario en la variable opcion
 
+			opcion = "A";
 			switch (opcion.toUpperCase()) {
 			case "A":
 				System.out.println("Has seleccionado la opcion A");

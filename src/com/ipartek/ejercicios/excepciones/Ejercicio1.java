@@ -32,7 +32,7 @@ public class Ejercicio1 {
 
 			division = a / b;
 			// si la linea de arriba lanza excepcion, estas de abajo unca se ejecutaran
-			System.out.println("El resultado a/b es " + division);
+			System.out.println("El resultado a/b es: " + division);
 
 		} catch (ArithmeticException e) {
 			System.out.println("División entre 0");

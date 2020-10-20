@@ -123,6 +123,8 @@ public class AppPerrera {
 			// Modificamos el nombre
 			String nuevoNombre = sc.nextLine();
 			p.setNombre(nuevoNombre);
+
+			System.out.println();
 			break;
 
 		default:

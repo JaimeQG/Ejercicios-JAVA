@@ -62,6 +62,7 @@ public class Telefono {
 		} else {
 			this.screenSize = screenSize;
 		}
+
 	}
 
 	public boolean isIs5G() {

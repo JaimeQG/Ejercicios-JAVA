@@ -127,6 +127,7 @@ public class AppTelefonos {
 
 	private static void modificarTelefono() {
 
+		// Opciones menu
 		final String OP_NOMBRE = "1";
 		final String OP_SO = "2";
 		final String OP_MEMORIA = "3";
@@ -152,12 +153,14 @@ public class AppTelefonos {
 				// Modificamos el nombre Telefono
 				System.out.println("Introduzca nuevo nombre del telefono: " + nombreTelefonoModificar);
 				nuevoNombre = sc.nextLine();
+				modificarPropiedadTelefono(nombreTelefonoModificar, nuevoNombre);
 				break;
 
 			case OP_SO:
 				// Modificamos el Sistema Operativo Telefono
 				System.out.println("Introduzca nuevo sistema operativo del telefono:" + nombreTelefonoModificar);
 				nuevoSO = sc.nextLine();
+				modificarPropiedadTelefono(nombreTelefonoModificar, nuevoNombre);
 				break;
 
 			case OP_MEMORIA:
@@ -173,6 +176,16 @@ public class AppTelefonos {
 			}
 		} while (terminar);
 
+		listarTelefono();
+
+	}
+
+	private static void modificarPropiedadTelefono(String nombreTelefonoModificar, String nuevoValor) {
+
+		final String OP_NOMBRE = "1";
+		final String OP_SO = "2";
+		final String OP_MEMORIA = "3";
+
 		// Modificamos la propiedad seleccionada del Telefono
 		for (Telefono telefono : lista) {
 			String nombreTelefono = telefono.getNombre();
@@ -182,7 +195,7 @@ public class AppTelefonos {
 				switch (opcion) {
 				case OP_NOMBRE:
 					// reemplazar el nombre del Telefono en el objeto telefono
-					telefono.setNombre(nuevoNombre);
+					telefono.setNombre(nuevoValor);
 
 					// reemplazar objeto telefono en la lista
 					// No es necesario (es redundante). En memoria apuntan al mismo objeto de la
@@ -191,13 +204,11 @@ public class AppTelefonos {
 
 					break;
 				case OP_SO:
-					telefono.setSistemaOperativo(nuevoSO);
+					telefono.setSistemaOperativo(nuevoValor);
 				}// Switch
 
 			} // End for
 		}
-
-		listarTelefono();
 
 	}
 

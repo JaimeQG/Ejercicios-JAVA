@@ -6,7 +6,7 @@ public class Telefono {
 	// La forma de manipularestos atributos es a traves de los getteres y setteres
 	private String nombre;
 	private String sistemaOperativo;
-	private float screenSize;
+	private int memoria;
 	private boolean is5G;
 	private String descripcion;
 
@@ -16,7 +16,7 @@ public class Telefono {
 		super();
 		this.nombre = "Sin nombre";
 		this.sistemaOperativo = "Sin nombre";
-		this.screenSize = 0f;
+		this.memoria = 0;
 		this.is5G = false;
 		this.descripcion = "en blanco";
 	}
@@ -28,11 +28,11 @@ public class Telefono {
 		this.nombre = nombre;
 	}
 
-	public Telefono(String nombre, String sistemaOperativo, float screenSize) {
+	public Telefono(String nombre, String sistemaOperativo, int memoria) {
 		this();
 		this.nombre = nombre;
 		this.sistemaOperativo = sistemaOperativo;
-		this.screenSize = screenSize;
+		this.memoria = memoria;
 	}
 
 	// Getters y Setters
@@ -52,15 +52,15 @@ public class Telefono {
 		this.sistemaOperativo = sistemaOperativo;
 	}
 
-	public float getScreenSize() {
-		return screenSize;
+	public float getmemoria() {
+		return memoria;
 	}
 
-	public void setScreenSize(float screenSize) {
-		if (screenSize < 0) {
-			this.screenSize = 0;
+	public void memoria(int memoria) {
+		if (memoria < 0) {
+			this.memoria = 0;
 		} else {
-			this.screenSize = screenSize;
+			this.memoria = memoria;
 		}
 
 	}
@@ -84,7 +84,7 @@ public class Telefono {
 	// toString();
 	@Override
 	public String toString() {
-		return "Telefono [nombre=" + nombre + ", sistemaOperativo=" + sistemaOperativo + ", screenSize=" + screenSize
+		return "Telefono [nombre=" + nombre + ", sistemaOperativo=" + sistemaOperativo + ", memoria=" + memoria
 				+ ", is5G=" + is5G + ", descripcion=" + descripcion + "]";
 	}
 

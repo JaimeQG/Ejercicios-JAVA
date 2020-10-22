@@ -5,21 +5,38 @@ import java.util.Scanner;
 
 import com.ipartek.pojo.Telefono;
 
+/**
+ * CRUD de Telefonos<br>
+ * <ol>
+ * <li>C: Create</li>
+ * <li>R: Read</li>
+ * <li>U: Update</li>
+ * <li>D: Delete</li>
+ * </ol>
+ */
+
 public class AppTelefonos {
 
-	// Opciones menu
-	static final String OP_LISTAR = "1";
-	static final String OP_CREAR = "2";
-	static final String OP_ELIMINAR = "3";
-	static final String OP_MODIFICAR = "4";
-	static final String OP_SALIR = "S";
+	// Opciones menu principal
+	static final private String OP_LISTAR = "1";
+	static final private String OP_CREAR = "2";
+	static final private String OP_ELIMINAR = "3";
+	static final private String OP_MODIFICAR = "4";
+	static final private String OP_SALIR = "S";
+
+	// Opciones menu modificar
+	static final String OP_NOMBRE = "1";
+	static final String OP_SO = "2";
+	static final String OP_MEMORIA = "3";
 
 	// Variables globales
-	static Scanner sc = null;
-	static ArrayList<Telefono> lista = new ArrayList<Telefono>();
-	static String opcion = "";
+	static private Scanner sc = null;
+	static private ArrayList<Telefono> lista = new ArrayList<Telefono>();
+	static private String opcion = "";
 
 	public static void main(String[] args) {
+
+		boolean salir = false;
 
 		System.out.println("*************  APP   TELEFONOS  *************");
 		sc = new Scanner(System.in);
@@ -48,19 +65,18 @@ public class AppTelefonos {
 				modificarTelefono();
 				break;
 
-			// case OP_SALIR:
-			// System.out.println("Adios ...");
-			// salir = true;
-			// break;
+			case OP_SALIR:
+				System.out.println("***********  ADIOS, nos vemos pronto  ***********");
+				salir = true;
+				break;
 
 			default:
 				System.out.println(" ** por favor selecciona una opción valida ** ");
+				System.out.println("");
 				break;
 			}// switch
 
-		} while (!OP_SALIR.equalsIgnoreCase(opcion));
-
-		System.out.println(("************************ ADIOS, nos vemos pronto  ***********"));
+		} while (!salir);
 
 		sc.close();
 	}// main
@@ -74,7 +90,7 @@ public class AppTelefonos {
 
 		// TODO ver como dar una fixed length al string para nombre
 		for (Telefono telefono : lista) {
-			System.out.println(String.format("%15s [%s] %s GB", telefono.getNombre(), telefono.getSistemaOperativo(),
+			System.out.println(String.format("%1s [%s] %s GB", telefono.getNombre(), telefono.getSistemaOperativo(),
 					telefono.getmemoria()));
 		}
 		System.out.println("");
@@ -133,7 +149,8 @@ public class AppTelefonos {
 		final String OP_MEMORIA = "3";
 		final String OP_SALIR = "S";
 
-		boolean terminar = true;
+		boolean existeTelefono = false;
+		boolean terminar = false;
 		String nuevoNombre = "";
 		String nuevoSO = "";
 
@@ -144,50 +161,59 @@ public class AppTelefonos {
 		System.out.println("\n Introduce el Telefono que quieres modificar:");
 		String nombreTelefonoModificar = sc.nextLine();
 
-		do {
+		// Buscamos el objeto Telefono dentro de la lista
+		for (Telefono telefono : lista) {
+			String nombreTelefono = telefono.getNombre();
 
-			pintarMenuModificar();
-
-			switch (opcion) {
-			case OP_NOMBRE:
-				// Modificamos el nombre Telefono
-				System.out.println("Introduzca nuevo nombre del telefono: " + nombreTelefonoModificar);
-				nuevoNombre = sc.nextLine();
-				modificarPropiedadTelefono(nombreTelefonoModificar, nuevoNombre);
-				break;
-
-			case OP_SO:
-				// Modificamos el Sistema Operativo Telefono
-				System.out.println("Introduzca nuevo sistema operativo del telefono:" + nombreTelefonoModificar);
-				nuevoSO = sc.nextLine();
-				modificarPropiedadTelefono(nombreTelefonoModificar, nuevoNombre);
-				break;
-
-			case OP_MEMORIA:
-				break;
-
-			case OP_SALIR:
-				terminar = false;
-				break;
-
-			default:
-				System.out.println(" ** por favor selecciona una opción valida ** ");
+			if (nombreTelefono.equalsIgnoreCase(nombreTelefonoModificar)) {
+				existeTelefono = true;
 				break;
 			}
-		} while (terminar);
+		} // End for
 
-		listarTelefono();
+		if (existeTelefono) { // Si el telefono a modificar existe preguntamos que propiedad quiere modificar
+
+			do {
+
+				pintarMenuModificar();
+
+				switch (opcion) {
+				case OP_NOMBRE:
+					// Modificamos el nombre Telefono
+					System.out.println("Introduzca nuevo nombre del telefono: " + nombreTelefonoModificar);
+					nuevoNombre = sc.nextLine();
+					modificarPropiedadTelefono(nombreTelefonoModificar, nuevoNombre);
+					break;
+
+				case OP_SO:
+					// Modificamos el Sistema Operativo Telefono
+					System.out.println("Introduzca nuevo sistema operativo del telefono:" + nombreTelefonoModificar);
+					nuevoSO = sc.nextLine();
+					modificarPropiedadTelefono(nombreTelefonoModificar, nuevoSO);
+					break;
+
+				case OP_MEMORIA:
+					break;
+
+				case OP_SALIR:
+					terminar = true;
+					break;
+
+				default:
+					System.out.println(" ** por favor selecciona una opción valida ** ");
+					break;
+				}
+			} while (!terminar);
+
+		} else {
+			System.out.println(" *** error: No existe el teléfono");
+		}
 
 	}
 
 	private static void modificarPropiedadTelefono(String nombreTelefonoModificar, String nuevoValor) {
 
-		final String OP_NOMBRE = "1";
-		final String OP_SO = "2";
-		final String OP_MEMORIA = "3";
-
-		// Modificamos la propiedad seleccionada del Telefono
-		for (Telefono telefono : lista) {
+		for (Telefono telefono : lista) { // Modificamos la propiedad seleccionada del Telefono
 			String nombreTelefono = telefono.getNombre();
 
 			if (nombreTelefono.equalsIgnoreCase(nombreTelefonoModificar)) {
@@ -201,14 +227,25 @@ public class AppTelefonos {
 					// No es necesario (es redundante). En memoria apuntan al mismo objeto de la
 					// lista
 					// lista.set(posicionLista, telefono);
+					System.out.println("El nombre se ha modificado ...");
+					System.out.println(telefono.toString());
 
 					break;
 				case OP_SO:
 					telefono.setSistemaOperativo(nuevoValor);
+
+					System.out.println("El Sistema Operativo se ha modificado ...");
+					System.out.println(telefono.toString());
+
+					break;
+
+				default:
+					break;
 				}// Switch
 
-			} // End for
-		}
+				break;
+			} // End if
+		} // End for
 
 	}
 
@@ -224,7 +261,7 @@ public class AppTelefonos {
 		System.out.println("**************************");
 		System.out.println("");
 
-		System.out.println("\n No Selecciona una opción del menú:");
+		System.out.println("Selecciona una opción del menú:");
 
 		opcion = sc.nextLine();
 	}

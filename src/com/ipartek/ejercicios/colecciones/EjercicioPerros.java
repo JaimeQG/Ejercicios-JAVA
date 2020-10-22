@@ -8,9 +8,8 @@ import com.ipartek.pojo.Perro;
 /**
  * Ejercicio para aprender los metodos basicos de java.util.ArrayList
  * 
- * @autor Jiame
- * @author usuario
- *
+ * @author Jaime
+ * 
  */
 
 public class EjercicioPerros {

@@ -7,7 +7,10 @@ import com.ipartek.pojo.Perro;
  * Crear 8 perros con su constructor por defecto y setear el nombre e
  * historia.<br>
  * 
- * @see https://blog.patasbox.com/los-8-perros-mas-fomos-de-la-historia/
+ * @see <a href=
+ *      "https://blog.patasbox.com/los-8-perros-mas-fomos-de-la-historia/">
+ *      Enlace Web perros famosos </a>
+ * 
  * @author Jaime
  *
  */

@@ -18,7 +18,7 @@ import com.ipartek.pojo.Persona;
  * <li>“matusalem” con 999 años</li>
  * </ol>
  * 
- * @autor Jaime
+ * @author Jaime
  * @version 1.0
  */
 

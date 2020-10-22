@@ -6,7 +6,7 @@ import java.util.Iterator;
 /**
  * Ejercicio para aprender los metodos basicos de java.util.ArrayList
  * 
- * @autor Jiame
+ * @author Jiame
  * @author usuario
  *
  */

@@ -9,6 +9,7 @@ package com.ipartek.ejercicios.EstructurasCondicionales;
  * <li>B: convertir a pulgadas</li>
  * <li>C: convertir a pies</li>
  * <li>D: convertir a yardas</li>
+ * </ul>
  * 
  * @author: Jaime
  * @version: 1.0

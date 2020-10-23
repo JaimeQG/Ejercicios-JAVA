@@ -3,6 +3,7 @@ package com.ipartek.apps;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.ipartek.modelo.PerroDAOArrayList;
 import com.ipartek.pojo.Perro;
 
 public class AppPerrera {
@@ -10,6 +11,7 @@ public class AppPerrera {
 	// Variables globales
 
 	static Scanner sc = null;
+	static private PerroDAOArrayList modelo = new PerroDAOArrayList();
 	static ArrayList<Perro> lista = new ArrayList<Perro>();
 	static String opcion = "";
 
@@ -49,10 +51,17 @@ public class AppPerrera {
 	}
 
 	private static void listar() {
-		for (Perro perro : lista) {
-			// TODO dar formato para mostrar solo nombre y raza
-			System.out.println("Nombre: " + perro.getNombre() + " - Raza: " + perro.getRaza());
+
+		// TODO ver como dar una fixed lenght al String para nombre
+		ArrayList<Perro> perros = modelo.listar();
+		for (Perro perro : perros) {
+			System.out.println(String.format("%15s [%s]  %s Kg", perro.getNombre(), perro.getRaza(), perro.getPeso()));
 		}
+		/*
+		 * for (Perro perro : lista) { // TODO dar formato para mostrar solo nombre y
+		 * raza System.out.println("Nombre: " + perro.getNombre() + " - Raza: " +
+		 * perro.getRaza()); }
+		 */
 	}
 
 	private static void crear() {

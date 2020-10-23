@@ -1,4 +1,4 @@
-package com.ipartek.ejercicios.EstructurasCondicionales;
+package com.ipartek.ejercicios.estructurasCondicionales;
 
 import java.util.Scanner;
 

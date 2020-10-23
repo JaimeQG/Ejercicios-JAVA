@@ -1,4 +1,4 @@
-package com.ipartek.ejercicios.EstructurasCondicionales;
+package com.ipartek.ejercicios.estructurasCondicionales;
 
 /**
  * Realizar un programa que realice la siguiente funcionalidad<br>

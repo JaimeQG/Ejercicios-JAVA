@@ -20,7 +20,7 @@ public class Ejercicio1 {
 	public static void main(String[] args) {
 
 		Perro c1 = new Perro();
-		Perro c2 = new Perro("Pulgas");
+		// Perro c2 = new Perro("Pulgas");
 		Perro c3 = new Perro("Goofy", "bichon", 6);
 
 		Perro snoppy = new Perro();

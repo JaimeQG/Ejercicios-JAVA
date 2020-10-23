@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author Jaime
  *
  */
-public class ejercicioB {
+public class EjercicioB {
 
 	// Opciones menu principal
 	static final private String OP_DNI = "1";

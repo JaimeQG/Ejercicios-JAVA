@@ -1,6 +1,10 @@
 package com.ipartek;
 
-public class Utilidades {
+import java.util.Scanner;
+
+import com.ipartek.pojo.Serie;
+
+public class Utilidades implements IFunciones {
 
 	static final char LETRAS_DNI[] = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S',
 			'Q', 'V', 'H', 'L', 'C', 'K', 'E' };
@@ -62,5 +66,93 @@ public class Utilidades {
 		return cadena;
 	}
 
-}
-// class
+	@Override
+	public String pedirNombre() throws Exception {
+		// @throws si el nombre es menor de una letra o contiene numeros
+		String nombre = "";
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Dime tu nombre:");
+		nombre = sc.nextLine();
+		sc.close();
+
+		if (nombre.length() <= 1) {
+			throw new Exception("*** error: Longitud del nombre incorrecto");
+		}
+
+		for (int i = 0; i < nombre.length(); i++) {
+			char letra = nombre.charAt(i);
+			boolean isNumber = Character.isDigit(letra);
+			if (isNumber) {
+				throw new Exception("*** error: No es un nombre correcto. Contiene números " + nombre);
+			}
+		}
+
+		/*
+		 * try { Integer.parseInt(nombre);
+		 * 
+		 * } catch (NumberFormatException e) { throw new
+		 * Exception("*** error: No es un nombre correcto. Contiene números " + nombre);
+		 * }
+		 */
+
+		return nombre;
+	}
+
+	@Override
+	public void imprimirNumeroLoteria(int tipoLoteria) throws Exception {
+		// @throws si el tipoLoteria no existe
+		switch (tipoLoteria) {
+		case LOTERIA_EUROMILLON:
+			System.out.println("EUROMILLÓN");
+			break;
+		case LOTERIA_QUINIELA:
+			System.out.println("QUINIELA");
+			break;
+		case LOTERIA_BONOLOTO:
+			System.out.println("BONOLOTO");
+			break;
+
+		default:
+			throw new Exception("*** error: Lotería no existe");
+		}
+
+	}
+
+	@Override
+	public float calcularVueltas(float dineroEntregado, float precioProducto) throws Exception {
+		// Exception si precioProducto > dineroEntregado
+		float vueltas = (float) 0.0;
+
+		if (precioProducto > dineroEntregado) {
+			throw new Exception("*** error: El precio del producto " + precioProducto
+					+ " es mayor que el precio entregado " + dineroEntregado);
+		}
+
+		vueltas = dineroEntregado - precioProducto;
+		return vueltas;
+	}
+
+	@Override
+	public Serie pedirDatosPorConsola() {
+
+		String nombreSerie = "";
+		String nombrePlataforma = "";
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Nombre de la serie:");
+		nombreSerie = sc.nextLine();
+
+		System.out.println("Plataforma de la serie:");
+		nombrePlataforma = sc.nextLine();
+
+		Serie serie = new Serie(nombreSerie);
+		serie.setPlataforma(nombrePlataforma);
+
+		sc.close();
+
+		// return serie;
+		return null;
+	}
+}// class

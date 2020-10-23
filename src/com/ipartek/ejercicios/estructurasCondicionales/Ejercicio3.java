@@ -1,4 +1,4 @@
-package com.ipartek.ejercicios.EstructurasCondicionales;
+package com.ipartek.ejercicios.estructurasCondicionales;
 
 /**
  * Pedir por teclado al usuario que introduzca una distancia en cm Una vez

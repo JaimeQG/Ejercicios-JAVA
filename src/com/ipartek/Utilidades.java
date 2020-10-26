@@ -135,24 +135,28 @@ public class Utilidades implements IFunciones {
 
 	@Override
 	public Serie pedirDatosPorConsola() {
+		Serie serie = new Serie("");
 
 		String nombreSerie = "";
 		String nombrePlataforma = "";
+		int numTemporadas;
 
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Nombre de la serie:");
 		nombreSerie = sc.nextLine();
+		serie.setPlataforma(nombreSerie);
 
-		System.out.println("Plataforma de la serie:");
+		System.out.println("Número de temporadas:");
+		numTemporadas = Integer.parseInt(sc.nextLine());
+		serie.setNumeroTemporadas(numTemporadas);
+
+		System.out.println("Nombre de la plataforma:");
 		nombrePlataforma = sc.nextLine();
-
-		Serie serie = new Serie(nombreSerie);
 		serie.setPlataforma(nombrePlataforma);
 
 		sc.close();
-
-		// return serie;
-		return null;
+		return serie;
+		// return null;
 	}
 }// class

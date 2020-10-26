@@ -13,32 +13,25 @@ package com.ipartek.pojo;
  * El constructor debere pasarse siempre el nombre de forma obligatoria.. El
  * resto de campos se iniciaalzan a 0 y la plataforma especificar "internet"
  * 
- * @author ur00
+ * @author Jaime
  *
  */
 public class Serie {
 	// Atributos, deben ser siempre privados
 	// La forma de manipularestos atributos es a traves de los getteres y setteres
 	private String nombre;
-	private int numeroTemporadas;
+	private int numTemporadas;
 	private int duracion;
 	private String plataforma;
 
 	// Constructores
 	/////////////////////////////////
-	public Serie() {
-		super();
-		this.nombre = "Sin nombre";
-		this.numeroTemporadas = 0;
-		this.duracion = 0;
-		this.plataforma = "internet";
-	}
 
 	public Serie(String nombre) {
-		this();
+		super(); // llamamos al constructor del padre que es java.lang.Object
 		this.nombre = nombre;
-		this.numeroTemporadas = 0;
-		this.duracion = 0;
+		this.numTemporadas = 0;
+		this.duracion = 0; // minutos
 		this.plataforma = "internet";
 	}
 
@@ -51,11 +44,11 @@ public class Serie {
 	}
 
 	public int getNumeroTemporadas() {
-		return numeroTemporadas;
+		return numTemporadas;
 	}
 
-	public void setNumeroTemporadas(int numeroTemporadas) {
-		this.numeroTemporadas = numeroTemporadas;
+	public void setNumeroTemporadas(int numTemporadas) {
+		this.numTemporadas = numTemporadas;
 	}
 
 	public int getDuracion() {
@@ -72,6 +65,12 @@ public class Serie {
 
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
+	}
+
+	@Override // Sobreescribir
+	public String toString() {
+		return "Serie [nombre=" + nombre + ", numeroTemporadas=" + numTemporadas + ", duracion=" + duracion
+				+ ", plataforma=" + plataforma + "]";
 	}
 
 }

@@ -15,6 +15,16 @@ public class TelevisionPlana extends Television {
 		this.tipoPantalla = tipoPantalla;
 	}
 
+	public TelevisionPlana(int pulgadas, String tipoPantalla) {
+		super(pulgadas);
+		this.tipoPantalla = tipoPantalla;
+	}
+
+	public TelevisionPlana(String nombre, float precio, int pulgadas, String tipoPantalla) {
+		super(nombre, precio, pulgadas);
+		this.tipoPantalla = tipoPantalla;
+	}
+
 	public String getTipoPantalla() {
 		return tipoPantalla;
 	}

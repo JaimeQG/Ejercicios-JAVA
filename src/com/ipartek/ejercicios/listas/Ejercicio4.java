@@ -1,6 +1,7 @@
 package com.ipartek.ejercicios.listas;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.ipartek.pojo.Carta;
 
@@ -41,7 +42,18 @@ public class Ejercicio4 {
 			}
 		}
 
+		System.out.println("***  LISTADO DE CARTAS   ***");
 		// Listado de las Cartas despues de crear la baraja
+		for (Carta c : baraja) {
+			System.out.println(c);
+		}
+
+		// Mezclamos las cartas
+		Collections.shuffle(baraja);
+
+		System.out.println("");
+		System.out.println("***  LISTADO DE DESPUES DE BARAJAR   ***");
+		// Listado de las Cartas despues de barajar la baraja
 		for (Carta c : baraja) {
 			System.out.println(c);
 		}

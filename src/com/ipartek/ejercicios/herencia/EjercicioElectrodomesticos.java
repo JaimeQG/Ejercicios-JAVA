@@ -21,10 +21,12 @@ import com.ipartek.pojo.TelevisionPlana;
  * métodos get y set para rellenar los datos de los objetos que se creen,
  * incluyendo todos los atributos de los objetos de las clases padres de las que
  * heredan<br>
+ * <p>
  * Una vez creado esta jerarquía de herencia, realizar un programa que nos pida
  * insertar televisiones planas dentro de un array de electrodomésticos. Dicho
  * array constara de 5 electodomesticos, pero lo rellenaremos con objetos de
  * tipo televisiónPlana.
+ * </p>
  * 
  * @author Jaime Quintana
  *
@@ -98,22 +100,38 @@ public class EjercicioElectrodomesticos {
 		for (Electrodomestico elec : lista) {
 
 			// En vez de usar syso, castear y mostrar datos con getters
-			System.out.println(elec);
+			// Cuando tenemos dentro del ArrayList objetos de distinto tipo
+			// System.out.println(elec.toString());
 
-			if (elec instanceof Television) {
+			// CUIDADDO con la Exception, hay que preguntar siempre con instanceof,
+			// descomentar la línea de abajo y probar
+			// TelevisionPlana ttt = (TelevisionPlana)elec;
+
+			if (elec instanceof Electrodomestico) {
+				System.out.printf("Nombre: % s \n", elec.getNombre());
+				System.out.printf("Precio % s \n", elec.getPrecio());
 
 				// podemos castear usando (Television) y asi nos permite acceder al los metodos
 				// de esa clase
-				((Television) elec).getPulgadas();
+				// ((Television) elec).getPulgadas();
+			}
+
+			if (elec instanceof Television) {
+				Television tv = (Television) elec;
+				System.out.printf("Pulgadas: %s \n", tv.getPulgadas());
 			}
 
 			if (elec instanceof TelevisionPlana) {
 
 				// tambien podemos castear y asignarlo a una variable nueva
 				TelevisionPlana tvp = (TelevisionPlana) elec;
+				System.out.printf("Tipo pantalla %s", tvp.getTipoPantalla());
 				tvp.getTipoPantalla();
 			}
-		}
+
+			System.out.println("--------------------------------------------");
+
+		} // for
 
 		System.out.println("** FIN PROGRAMA **");
 

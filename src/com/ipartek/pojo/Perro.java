@@ -1,11 +1,11 @@
 package com.ipartek.pojo;
 
-public class Perro {
+public class Perro extends Mamifero {
 
 	// Atributos, deben ser siempre privados
 	// La forma de manipularestos atributos es a traves de los getteres y setteres
 	private int id; // TODO getter setters y contructor toString
-	private String nombre;
+	// private String nombre;
 	private String raza;
 	private float peso;
 	private boolean isVacunado;
@@ -14,9 +14,9 @@ public class Perro {
 	// Constructores
 	/////////////////////////////////
 	public Perro() {
-		super();
+		super("Sin nombre");
 		this.id = 0;
-		this.nombre = "Sin nombre";
+		// super.setNombre("Sin nombre");
 		this.raza = "Cruce";
 		this.peso = 0f;
 		this.isVacunado = false;
@@ -29,11 +29,21 @@ public class Perro {
 		this(); // llama al constructor por defecto, pulsar Control + click
 		this.id = id;
 		this.nombre = nombre;
+		this.raza = "Cruce";
+		this.peso = 0f;
+		this.isVacunado = false;
+		this.historia = "en blanco";
 	}
 
 	public Perro(String nombre) {
-		this(); // llama al constructor por defecto, pulsar Control + click
-		this.nombre = nombre;
+		// llama al constructor por defecto, pulsar Control + click
+		super(nombre);
+	}
+
+	public Perro(String nombre, String raza, float peso) {
+		super(nombre);
+		this.raza = raza;
+		this.peso = peso;
 	}
 
 	public int getId() {
@@ -44,21 +54,12 @@ public class Perro {
 		this.id = id;
 	}
 
-	public Perro(String nombre, String raza, float peso) {
-		this();
-		this.nombre = nombre;
-		this.raza = raza;
-		this.peso = peso;
-	}
-
 	// Getters y Setters
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	/*
+	 * public String getNombre() { return nombre; }
+	 * 
+	 * public void setNombre(String nombre) { this.nombre = nombre; }
+	 */
 
 	public String getRaza() {
 		return raza;
@@ -98,8 +99,14 @@ public class Perro {
 
 	@Override
 	public String toString() {
-		return "Perro [id=" + id + ", nombre=" + nombre + ", raza=" + raza + ", peso=" + peso + ", isVacunado="
-				+ isVacunado + ", historia=" + historia + "]";
+		return "Perro [id=" + id + ", raza=" + raza + ", peso=" + peso + ", isVacunado=" + isVacunado + ", historia="
+				+ historia + "]";
 	}
+
+	/*
+	 * @Override public String toString() { return "Perro [id=" + id + ", nombre=" +
+	 * nombre + ", raza=" + raza + ", peso=" + peso + ", isVacunado=" + isVacunado +
+	 * ", historia=" + historia + "]"; }
+	 */
 
 }

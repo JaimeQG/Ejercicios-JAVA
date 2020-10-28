@@ -73,6 +73,12 @@ public class EjercicioCoche {
 
 	}// main
 
+	/**
+	 * Añadir coche al ArrayList
+	 * 
+	 * @param c
+	 */
+
 	private static void addCoche() {
 
 		String matricula = "";

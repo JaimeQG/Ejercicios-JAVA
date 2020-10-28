@@ -7,7 +7,6 @@ import com.ipartek.pojo.Serie;
 public class ImplementacionFunciones implements IFunciones {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 

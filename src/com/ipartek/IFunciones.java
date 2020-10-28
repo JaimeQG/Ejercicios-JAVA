@@ -10,9 +10,10 @@ import com.ipartek.pojo.Serie;
  */
 public interface IFunciones {
 
-	final int LOTERIA_EUROMILLON = 1;
+	public static final int LOTERIA_EUROMILLON = 1;
 	final int LOTERIA_QUINIELA = 2;
-	final int LOTERIA_BONOLOTO = 3;
+	static int LOTERIA_BONOLOTO = 3;
+	int LOTERIA_NACIONAL = 4;
 
 	/**
 	 * pedir nombre por Scanner
@@ -20,7 +21,7 @@ public interface IFunciones {
 	 * @throws si el nombre es menor de una letra o contiene numeros
 	 * @return nombre escrito
 	 */
-	String pedirNombre() throws Exception;
+	public abstract String pedirNombre() throws Exception;
 
 	/**
 	 * imprime los numeros de la Loteria<br>

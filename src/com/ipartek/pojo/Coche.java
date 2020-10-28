@@ -17,7 +17,7 @@ package com.ipartek.pojo;
 
 public class Coche {
 
-	// Atributos
+	// Atributos, deben ser siempre privados
 	private String matricula;
 	private String marca;
 	private String modelo;

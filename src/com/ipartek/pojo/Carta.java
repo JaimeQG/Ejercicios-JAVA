@@ -15,21 +15,27 @@ package com.ipartek.pojo;
 public class Carta {
 
 	// Atributos
-	private int valor;
+	private String valor;
 	private String palo;
 
 	// Constructor
 	public Carta() {
 		super();
-		this.valor = 1;
+		this.valor = "sin valor";
 		this.palo = "Sin nombre";
 	}
 
-	public int getValor() {
+	public Carta(String palo, String valor) {
+		super();
+		this.valor = valor;
+		this.palo = palo;
+	}
+
+	public String getValor() {
 		return valor;
 	}
 
-	public void setValor(int valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 

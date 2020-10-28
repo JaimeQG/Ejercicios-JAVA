@@ -23,7 +23,7 @@ public class Ejercicio4 {
 
 	// Constantes globales
 	static final String PALOS_BARAJA[] = { "Oros", "Copas", "Espadas", "Bastos" };
-	static final int VALOR_CARTA[] = { 1, 2, 3, 4, 5, 6, 7, 10, 11, 12 };
+	static final String VALOR_CARTA[] = { "as", "2", "3", "4", "5", "6", "7", "sota", "caballo", "rey" };
 
 	static final ArrayList<Carta> baraja = new ArrayList<Carta>();
 
@@ -33,10 +33,11 @@ public class Ejercicio4 {
 		for (int i = 0; i < PALOS_BARAJA.length; i++) {
 
 			for (int j = 0; j < VALOR_CARTA.length; j++) {
-				Carta c = new Carta();
 
-				c.setPalo(PALOS_BARAJA[i]);
-				c.setValor(VALOR_CARTA[j]);
+				Carta c = new Carta(PALOS_BARAJA[i], VALOR_CARTA[j]);
+
+				// c.setPalo(PALOS_BARAJA[i]);
+				// c.setValor(VALOR_CARTA[j]);
 				// System.out.println(c);
 				baraja.add(c);
 			}
@@ -45,7 +46,9 @@ public class Ejercicio4 {
 		System.out.println("***  LISTADO DE CARTAS   ***");
 		// Listado de las Cartas despues de crear la baraja
 		for (Carta c : baraja) {
-			System.out.println(c);
+
+			System.out.printf("%s de %s %n", c.getValor(), c.getPalo());
+			// System.out.println(c);
 		}
 
 		// Mezclamos las cartas
@@ -55,9 +58,13 @@ public class Ejercicio4 {
 		System.out.println("***  LISTADO DE DESPUES DE BARAJAR   ***");
 		// Listado de las Cartas despues de barajar la baraja
 		for (Carta c : baraja) {
-			System.out.println(c);
+			System.out.printf("%s de %s %n", c.getValor(), c.getPalo());
+			// System.out.println(c);
 		}
 
+		System.out.println("------------------------------------------------");
+		System.out.printf(" Total %s Cartas en el mazo \n", baraja.size());
+		System.out.println("------------------------------------------------");
 	}
 
 }

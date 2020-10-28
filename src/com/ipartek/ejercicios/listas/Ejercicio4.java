@@ -1,7 +1,7 @@
 package com.ipartek.ejercicios.listas;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
 
 import com.ipartek.pojo.Carta;
 
@@ -22,8 +22,15 @@ import com.ipartek.pojo.Carta;
 public class Ejercicio4 {
 
 	// Constantes globales
-	static final String PALOS_BARAJA[] = { "Oros", "Copas", "Espadas", "Bastos" };
-	static final String VALOR_CARTA[] = { "as", "2", "3", "4", "5", "6", "7", "sota", "caballo", "rey" };
+	private static final String CARTA_AS = "as";
+	private static int CARTA_VALOR_AS = 1;
+
+	private static final String CARTA_SOTA = "sota";
+	private static final String CARTA_CABALLO = "caballo";
+	private static final String CARTA_REY = "rey";
+
+	private static final String PALOS_BARAJA[] = { "Oros", "Copas", "Espadas", "Bastos" };
+	private static final String VALOR_CARTA[] = { "as", "2", "3", "4", "5", "6", "7", "sota", "caballo", "rey" };
 
 	static final ArrayList<Carta> baraja = new ArrayList<Carta>();
 
@@ -35,24 +42,31 @@ public class Ejercicio4 {
 			for (int j = 0; j < VALOR_CARTA.length; j++) {
 
 				Carta c = new Carta(PALOS_BARAJA[i], VALOR_CARTA[j]);
-
-				// c.setPalo(PALOS_BARAJA[i]);
-				// c.setValor(VALOR_CARTA[j]);
-				// System.out.println(c);
 				baraja.add(c);
 			}
 		}
 
-		System.out.println("***  LISTADO DE CARTAS   ***");
 		// Listado de las Cartas despues de crear la baraja
+		System.out.println("***  LISTADO DE CARTAS   ***");
+
 		for (Carta c : baraja) {
 
 			System.out.printf("%s de %s %n", c.getValor(), c.getPalo());
-			// System.out.println(c);
 		}
 
 		// Mezclamos las cartas
-		Collections.shuffle(baraja);
+		Random rnd = new Random();
+
+		for (int i = 0; i < baraja.size(); i++) {
+			int azar = rnd.nextInt(baraja.size());
+			// eliminar por indice
+			Carta c = baraja.remove(azar);
+			// insertar en el arrayList la carta borrada
+			baraja.add(c);
+		}
+
+		// Mezclamos las cartas
+		// Collections.shuffle(baraja);
 
 		System.out.println("");
 		System.out.println("***  LISTADO DE DESPUES DE BARAJAR   ***");

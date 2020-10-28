@@ -6,13 +6,28 @@ public class Principal {
 
 	public static void main(String[] args) {
 
-		Patinete patinete = new Patinete(0, false);
+		Patinete p = new Patinete();
 
-		patinete.Arrancar();
+		p.arrancar();
+		System.out.println(p.isEstaArrancado());
 
-		patinete.Acelerar(40);
+		p.acelerar(40);
+		System.out.println(p.getVelocidadActual());
 
-		patinete.Acelerar(50);
+		p.acelerar(50);
+		System.out.println(p.getVelocidadActual());
+
+		p.acelerar(50);
+		System.out.println(p.getVelocidadActual());
+
+		p.frenar(50);
+		System.out.println(p.getVelocidadActual());
+
+		try {
+			p.apagar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

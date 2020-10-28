@@ -45,48 +45,49 @@ public class Patinete implements IVehiculo {
 	}
 
 	@Override
-	public void Arrancar() {
+	public void arrancar() {
 
-		Patinete p = new Patinete();
-
-		if (p.isEstaArrancado() == false) {
-			p.setEstaArrancado(true);
+		if (this.isEstaArrancado() == false) {
+			setEstaArrancado(true);
 		}
 
 	}
 
 	@Override
-	public void Acelerar(int incrementoVel) {
+	public void acelerar(int incrementoVel) {
 
-		Patinete p = new Patinete();
+		if (this.isEstaArrancado()) {
+			int nuevaVelocidad = this.getVelocidadActual() + incrementoVel;
 
-		if (p.isEstaArrancado() == true) {
-			if ((p.getVelocidadActual() + incrementoVel) < VEL_MAX_PATINETE) {
-				int velocidadActual = p.getVelocidadActual() + incrementoVel;
-				p.setVelocidadActual(velocidadActual);
-			}
-		}
-
-	}
-
-	@Override
-	public void Frenar(int decrementoVel) {
-		Patinete p = new Patinete();
-
-		if (p.isEstaArrancado() == true) {
-			if ((p.getVelocidadActual() - decrementoVel) > 0) {
-				int velocidadActual = p.getVelocidadActual() - -decrementoVel;
-				p.setVelocidadActual(velocidadActual);
+			if (nuevaVelocidad < VEL_MAX_PATINETE) {
+				this.setVelocidadActual(nuevaVelocidad);
+			} else {
+				this.setVelocidadActual(VEL_MAX_PATINETE);
 			}
 		}
 	}
 
 	@Override
-	public void Apagar() {
-		Patinete p = new Patinete();
+	public void frenar(int decrementoVel) {
 
-		if (p.isEstaArrancado() == true) {
-			p.setEstaArrancado(false);
+		if (this.isEstaArrancado()) {
+			int nuevaVelocidad = this.getVelocidadActual() - decrementoVel;
+
+			if (nuevaVelocidad > 0) {
+				this.setVelocidadActual(nuevaVelocidad);
+			} else {
+				this.setVelocidadActual(0);
+			}
+		}
+	}
+
+	@Override
+	public void apagar() throws Exception {
+
+		if (this.isEstaArrancado() && this.velocidadActual > 0) {
+			throw new Exception("No se puede apagar estando acelerado " + this.velocidadActual + "km/h");
+		} else {
+			this.setEstaArrancado(false);
 		}
 
 	}

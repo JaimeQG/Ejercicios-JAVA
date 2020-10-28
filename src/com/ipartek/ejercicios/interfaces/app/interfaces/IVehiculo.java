@@ -12,7 +12,7 @@ public interface IVehiculo {
 	 * 
 	 * @param
 	 */
-	void Arrancar();
+	void arrancar();
 
 	/**
 	 * Acelerar: incrementara la velocidad actual con el valor que se le pasa por
@@ -21,7 +21,7 @@ public interface IVehiculo {
 	 * 
 	 * @param int incrementoVel
 	 */
-	void Acelerar(int incrementoVel);
+	void acelerar(int incrementoVel);
 
 	/**
 	 * Frenar: decrementara la velocidad actual con el valor que se le pasa por
@@ -29,14 +29,15 @@ public interface IVehiculo {
 	 * 
 	 * @param int decrementoVel
 	 */
-	void Frenar(int decrementoVel);
+	void frenar(int decrementoVel);
 
 	/**
 	 * Apagar: pondrá el atributo estaArrancado a false, solo si la velocidadActual
 	 * es 0
 	 * 
 	 * @param
+	 * @Exception no se puede parar si está en marcha
 	 */
-	void Apagar();
+	void apagar() throws Exception;
 
 }

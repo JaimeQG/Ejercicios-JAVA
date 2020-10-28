@@ -74,9 +74,9 @@ public class EjercicioCoche {
 	}// main
 
 	/**
-	 * Añadir coche al ArrayList
+	 * Añadir coche al ArrayList de Objetos Coche
 	 * 
-	 * @param c
+	 * @param
 	 */
 
 	private static void addCoche() {
@@ -127,6 +127,13 @@ public class EjercicioCoche {
 
 	}
 
+	/**
+	 * Validad que los datos introducidos por pantalla son de tipo int
+	 * 
+	 * @param nombre de la propiedad de tipo entero de la Clase Coche
+	 * @return valor de tipo entero
+	 */
+
 	private static int validarEnteros(String propiedad) {
 
 		boolean isError = true;
@@ -149,6 +156,12 @@ public class EjercicioCoche {
 		return intEntero;
 	}
 
+	/**
+	 * Sacar por pantalla los objetos coche del ArrayList
+	 * 
+	 * @param
+	 */
+
 	private static void listarCoches() {
 
 		System.out.println("");
@@ -156,7 +169,6 @@ public class EjercicioCoche {
 		System.out.println("++++  LISTADO  DE  COCHES  ++++");
 		System.out.println("-------------------------------");
 
-		// TODO ver como dar una fixed length al string para nombre
 		for (Coche coche : lista) {
 			// System.out.println(String.format("%1s [%s] %s ", coche.getMarca(),
 			// telefono.getSistemaOperativo(),
@@ -169,6 +181,17 @@ public class EjercicioCoche {
 		System.out.println("----------------------------------------------");
 
 	}
+
+	/**
+	 * Sacar por pantalla el menu con las opciones disponibles:
+	 * <ul>
+	 * <li>1.- Añadir cochez</li>
+	 * <li>2.- Listar coches</li>
+	 * <li>S.- Salir</li>
+	 * </ul>
+	 * 
+	 * @param
+	 */
 
 	private static void pintarMenu() {
 

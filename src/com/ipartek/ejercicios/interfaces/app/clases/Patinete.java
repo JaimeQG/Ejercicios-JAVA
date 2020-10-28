@@ -46,6 +46,7 @@ public class Patinete implements IVehiculo {
 
 	@Override
 	public void Arrancar() {
+
 		Patinete p = new Patinete();
 
 		if (p.isEstaArrancado() == false) {
@@ -56,6 +57,7 @@ public class Patinete implements IVehiculo {
 
 	@Override
 	public void Acelerar(int incrementoVel) {
+
 		Patinete p = new Patinete();
 
 		if (p.isEstaArrancado() == true) {

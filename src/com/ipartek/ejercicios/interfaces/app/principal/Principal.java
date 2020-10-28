@@ -11,11 +11,8 @@ public class Principal {
 		patinete.Arrancar();
 
 		patinete.Acelerar(40);
-		System.out.println(patinete.getVelocidadActual());
 
 		patinete.Acelerar(50);
-
-		System.out.println(patinete.getVelocidadActual());
 
 	}
 

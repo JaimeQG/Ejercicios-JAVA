@@ -1,6 +1,4 @@
-package com.ipartek.pojo;
-
-import com.ipartek.ejercicios.sepe.IConducible;
+package mf0227.uf2404.actividad2;
 
 public class Vehiculo implements IConducible {
 
@@ -44,13 +42,13 @@ public class Vehiculo implements IConducible {
 
 	@Override
 	public void arrancar() {
-		// TODO Auto-generated method stub
+		System.out.println("Arrancamos ....");
 
 	}
 
 	@Override
 	public void apagar() throws Exception {
-		// TODO Auto-generated method stub
+		System.out.println("Paramos y apagamos el motor ...");
 
 	}
 

@@ -1,4 +1,4 @@
-package com.ipartek.pojo;
+package mf0227.uf2404.actividad2;
 
 /**
  * La clase coche tendrá los siguientes atributos:<br>
@@ -32,7 +32,7 @@ public class Coche extends Vehiculo {
 		this.cilindrada = 0;
 	}
 
-	public Coche(String matricula, String marca, String modelo, String color, int potencia, int cilindrada) {
+	public Coche(String color, String matricula, String marca, String modelo, int potencia, int cilindrada) {
 		super(color, matricula);
 		this.marca = marca;
 		this.modelo = modelo;
@@ -75,8 +75,8 @@ public class Coche extends Vehiculo {
 
 	@Override
 	public String toString() {
-		return "Coche [marca=" + marca + ", modelo=" + modelo + ", potencia=" + potencia + ", cilindrada=" + cilindrada
-				+ ", Color=" + super.getColor() + ", Matricula=" + super.getMatricula() + "]";
+		return "Coche [marca=" + marca + ", modelo=" + modelo + ", potencia=" + potencia + " CV, cilindrada="
+				+ cilindrada + " cm3, Color=" + super.getColor() + ", Matricula=" + super.getMatricula() + "]";
 	}
 
 }

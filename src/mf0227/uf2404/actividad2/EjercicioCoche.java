@@ -1,9 +1,7 @@
-package com.ipartek.ejercicios.sepe;
+package mf0227.uf2404.actividad2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import com.ipartek.pojo.Coche;
 
 /**
  * Realizar un programa que nos cree una lista de coches, para ello deberá
@@ -28,6 +26,7 @@ public class EjercicioCoche {
 	// Opciones menu principal
 	static final private String OP_ADD = "1";
 	static final private String OP_LISTAR = "2";
+	static final private String OP_ARRANCAR = "3";
 	static final private String OP_SALIR = "S";
 
 	// Variables globales
@@ -43,6 +42,9 @@ public class EjercicioCoche {
 		System.out.println("*************  EJERCICIO COCHES  *************");
 		sc = new Scanner(System.in);
 
+		// Creamos 3 coches por defecto
+		crearCoches();
+
 		do {
 			pintarMenu();
 
@@ -54,6 +56,17 @@ public class EjercicioCoche {
 
 			case OP_LISTAR:
 				listarCoches();
+				break;
+
+			case OP_ARRANCAR:
+				try {
+					arrancarCoches();
+					System.out.println("ATENCIÓN !!! Coches arrancados");
+
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					System.out.println(" *** No ha sido posible arrancar los coches");
+				}
 				break;
 
 			case OP_SALIR:
@@ -72,6 +85,38 @@ public class EjercicioCoche {
 		sc.close();
 
 	}// main
+
+	/**
+	 * Creamos coches dentro del ArrayList
+	 * 
+	 * @param
+	 */
+
+	private static void crearCoches() {
+		// insertar valores en el ArrayList
+		lista.add(new Coche("Blanco", "1234BBB", "Seat", "Ibiza", 100, 1500));
+		lista.add(new Coche("Negro", "5678CCC", "Ford", "Fiesta", 75, 1000));
+		lista.add(new Coche("Rojo", "0987DDD", "Peugeot", "308", 110, 1600));
+	}
+
+	/**
+	 * Arranca todos los coches del ArrayList de coches
+	 * 
+	 * @param
+	 */
+
+	private static void arrancarCoches() throws Exception {
+
+		if (lista.size() > 0) {
+			for (Coche coche : lista) {
+				System.out.println(coche);
+				coche.arrancar();
+			}
+		} else {
+			throw new Exception(" *** error: no hay coches dentro de la lista");
+		}
+
+	}
 
 	/**
 	 * Añadir coche al ArrayList de Objetos Coche
@@ -170,15 +215,12 @@ public class EjercicioCoche {
 		System.out.println("-------------------------------");
 
 		for (Coche coche : lista) {
-			// System.out.println(String.format("%1s [%s] %s ", coche.getMarca(),
-			// telefono.getSistemaOperativo(),
-			// telefono.getmemoria()));
 			System.out.println(coche);
 		}
 
-		System.out.println("----------------------------------------------");
+		System.out.println("---------------------------------");
 		System.out.printf(" Total %s Coches \n", lista.size());
-		System.out.println("----------------------------------------------");
+		System.out.println("---------------------------------");
 
 	}
 
@@ -187,6 +229,7 @@ public class EjercicioCoche {
 	 * <ul>
 	 * <li>1.- Añadir cochez</li>
 	 * <li>2.- Listar coches</li>
+	 * <li>3.- Arrancar coche</li>
 	 * <li>S.- Salir</li>
 	 * </ul>
 	 * 
@@ -198,6 +241,7 @@ public class EjercicioCoche {
 		System.out.println("*******************************");
 		System.out.println(" 1.- Añadir coche");
 		System.out.println(" 2.- Listar coches");
+		System.out.println(" 3.- Arrancar coches");
 		System.out.println(" S.- Salir");
 		System.out.println("*******************************");
 

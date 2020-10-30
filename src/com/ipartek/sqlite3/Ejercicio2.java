@@ -13,7 +13,7 @@ public class Ejercicio2 {
 
 	public static void main(String[] args) throws SQLException {
 
-		ArrayList<Perro> perros = new ArrayList();
+		ArrayList<Perro> perros = new ArrayList<Perro>();
 
 		// Connection conn =
 		// DriverManager.getConnection("jdbc:sqlite:C:/sqlite/concesionario.db");

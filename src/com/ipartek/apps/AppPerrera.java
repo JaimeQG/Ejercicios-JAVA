@@ -3,7 +3,8 @@ package com.ipartek.apps;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.ipartek.modelo.PerroDAOArrayList;
+import com.ipartek.modelo.PerroDAOSqlite;
+import com.ipartek.modelo.PerroDao;
 import com.ipartek.pojo.Perro;
 
 public class AppPerrera {
@@ -11,7 +12,8 @@ public class AppPerrera {
 	// Variables globales
 
 	static Scanner sc = null;
-	static private PerroDAOArrayList modelo = new PerroDAOArrayList();
+	// static private PerroDAOArrayList modelo = new PerroDAOArrayList();
+	static private PerroDao modelo = new PerroDAOSqlite();
 	static ArrayList<Perro> lista = new ArrayList<Perro>();
 	static String opcion = "";
 

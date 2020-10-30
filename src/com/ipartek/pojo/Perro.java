@@ -46,6 +46,14 @@ public class Perro extends Mamifero {
 		this.peso = peso;
 	}
 
+	public Perro(String nombre, String raza, float peso, boolean isVacunado, String historia) {
+		super(nombre);
+		this.raza = raza;
+		this.peso = peso;
+		this.isVacunado = isVacunado;
+		this.historia = historia;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -97,16 +97,16 @@ public class Perro extends Mamifero {
 		this.historia = historia;
 	}
 
+	/*
+	 * @Override public String toString() { return "Perro [id=" + id + ", raza=" +
+	 * raza + ", peso=" + peso + ", isVacunado=" + isVacunado + ", historia=" +
+	 * historia + "]"; }
+	 */
+
 	@Override
 	public String toString() {
-		return "Perro [id=" + id + ", raza=" + raza + ", peso=" + peso + ", isVacunado=" + isVacunado + ", historia="
-				+ historia + "]";
+		return "Perro [id=" + id + ", nombre=" + nombre + ", raza=" + raza + ", peso=" + peso + ", isVacunado="
+				+ isVacunado + ", historia=" + historia + "]";
 	}
-
-	/*
-	 * @Override public String toString() { return "Perro [id=" + id + ", nombre=" +
-	 * nombre + ", raza=" + raza + ", peso=" + peso + ", isVacunado=" + isVacunado +
-	 * ", historia=" + historia + "]"; }
-	 */
 
 }

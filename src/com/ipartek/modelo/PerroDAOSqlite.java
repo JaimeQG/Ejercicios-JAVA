@@ -147,6 +147,30 @@ public class PerroDAOSqlite implements PerroDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		return resultado;
+	}
+
+	public int countDBRows() {
+		int resultado = 0;
+		final String SQL = "SELECT id FROM perro;";
+		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
+				PreparedStatement pst = conn.prepareStatement(SQL);
+				ResultSet rs = pst.executeQuery();) {
+
+			while (rs.next()) {
+				// Obtienes la data que necesitas...
+				resultado++;
+			}
+
+			/*
+			 * try { boolean ultimo = rs.last(); int total = 0; if (ultimo) { total =
+			 * rs.getRow(); } } catch (Exception e) { e.printStackTrace(); }
+			 */
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return resultado;
 	}
 

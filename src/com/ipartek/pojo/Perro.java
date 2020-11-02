@@ -2,79 +2,72 @@ package com.ipartek.pojo;
 
 public class Perro extends Mamifero {
 
+	public static final String RAZA_POR_DEFECTO = "cruce";
+
 	// Atributos, deben ser siempre privados
-	// La forma de manipularestos atributos es a traves de los getteres y setteres
-	private int id; // TODO getter setters y contructor toString
-	// private String nombre;
+	// la forma de manipular estos atributos es a traves de los getteres y settres
+	///////////////////////////////////////
+	private int id;
 	private String raza;
 	private float peso;
 	private boolean isVacunado;
 	private String historia;
 
 	// Constructores
-	/////////////////////////////////
+	///////////////////////////////////////
 	public Perro() {
 		super("Sin nombre");
 		this.id = 0;
-		// super.setNombre("Sin nombre");
-		this.raza = "Cruce";
+		this.raza = RAZA_POR_DEFECTO;
 		this.peso = 0f;
 		this.isVacunado = false;
-		this.historia = "en blanco";
+		this.historia = "Erase una vez....";
 	}
 
-	// Otro constructor sobrecargado
-
-	public Perro(int id, String nombre) {
-		this(); // llama al constructor por defecto, pulsar Control + click
-		this.id = id;
-		this.nombre = nombre;
-		this.raza = "Cruce";
-		this.peso = 0f;
-		this.isVacunado = false;
-		this.historia = "en blanco";
-	}
+	// otro constructor sobrecargado
 
 	public Perro(String nombre) {
-		// llama al constructor por defecto, pulsar Control + click
 		super(nombre);
+		this.id = 0;
+		this.raza = RAZA_POR_DEFECTO;
+		this.peso = 0f;
+		this.isVacunado = false;
+		this.historia = "Erase una vez....";
 	}
 
 	public Perro(String nombre, String raza, float peso) {
-		super(nombre);
-		this.raza = raza;
-		this.peso = peso;
+		this(nombre);
+		// CUIDADO si tienen algo espcial los settres usarlos
+		// this.raza = raza;
+		this.setRaza(raza);
+		// this.peso = peso;
+		this.setPeso(peso);
 	}
 
-	public Perro(String nombre, String raza, float peso, boolean isVacunado, String historia) {
-		super(nombre);
-		this.raza = raza;
-		this.peso = peso;
-		this.isVacunado = isVacunado;
-		this.historia = historia;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	// Getters y Setters
-	/*
-	 * public String getNombre() { return nombre; }
-	 * 
-	 * public void setNombre(String nombre) { this.nombre = nombre; }
-	 */
+	// Getters y setters
+	///////////////////////////////////////
 
 	public String getRaza() {
 		return raza;
 	}
 
+	/**
+	 * Comprobamos que sea una raza valida, si es null o vacio usamos la constante
+	 * RAZA_POR_DEFECTO
+	 * 
+	 * @param raza
+	 */
 	public void setRaza(String raza) {
-		this.raza = raza;
+		if (raza != null) {
+
+			if (raza.trim().isEmpty()) {
+				raza = RAZA_POR_DEFECTO;
+			}
+			this.raza = raza;
+
+		} else {
+			this.raza = RAZA_POR_DEFECTO;
+		}
 	}
 
 	public float getPeso() {
@@ -105,16 +98,20 @@ public class Perro extends Mamifero {
 		this.historia = historia;
 	}
 
-	/*
-	 * @Override public String toString() { return "Perro [id=" + id + ", raza=" +
-	 * raza + ", peso=" + peso + ", isVacunado=" + isVacunado + ", historia=" +
-	 * historia + "]"; }
-	 */
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {
-		return "Perro [id=" + id + ", nombre=" + nombre + ", raza=" + raza + ", peso=" + peso + ", isVacunado="
-				+ isVacunado + ", historia=" + historia + "]";
+		return "Perro [id=" + id + ", raza=" + raza + ", peso=" + peso + ", isVacunado=" + isVacunado + ", historia="
+				+ historia + ", getNombre()=" + getNombre() + ", getPatas()=" + getPatas() + "]";
 	}
+
+	// Otros metodos
 
 }

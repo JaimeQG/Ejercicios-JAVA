@@ -54,4 +54,12 @@ public interface PerroDao {
 	 */
 	boolean eliminar(int id) throws Exception;
 
+	/**
+	 * Cuenta elnúmero de filas de la tabla perro
+	 * 
+	 * @throws Exception TODO hasta que veamos la bbdd
+	 * @return int con el numero de filas de la tabla perro
+	 */
+	int countDBRows() throws Exception;
+
 }

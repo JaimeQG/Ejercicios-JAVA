@@ -36,4 +36,14 @@ public class PerroDAOBBDD implements PerroDao {
 		return false;
 	}
 
+	public int countDBRows() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Perro modificarCampo(Perro p, String campo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -3,7 +3,9 @@ package com.ipartek.apps;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.ipartek.modelo.PerroDAOArrayList;
 import com.ipartek.modelo.PerroDAOSqlite;
+import com.ipartek.modelo.PerroDao;
 import com.ipartek.pojo.Perro;
 
 public class AppPerrera {
@@ -15,11 +17,20 @@ public class AppPerrera {
 	static final private String OP_MODIFICAR = "4";
 	static final private String OP_SALIR = "S";
 
+	// Opciones menu Modificar
+	static final private String OP_NOMBRE = "1";
+	static final private String OP_RAZA = "2";
+
 	static Scanner sc = null;
 	// static private PerroDAOArrayList modelo = new PerroDAOArrayList();
+
+	// static private PerroDAOSqlite modelo = new PerroDAOSqlite();
+	// cuando usamos un patron singleton, el constructor es privado
 	// static private PerroDao modelo = new PerroDAOSqlite();
-	static private PerroDAOSqlite modelo = new PerroDAOSqlite();
-	static ArrayList<Perro> lista = new ArrayList<Perro>();
+	// deberemos usar el metodo getInstance();
+	// static private PerroDao modelo = PerroDAOSqlite.getInstance();
+	static private PerroDao modelo = PerroDAOArrayList.getInstance();
+
 	static String opcion = "";
 
 	public static void main(String[] args) {
@@ -72,7 +83,8 @@ public class AppPerrera {
 		}
 
 		// Este DAO se encarga de realizara la operaciones de CRUD contra la bbdd
-		PerroDAOSqlite dao = new PerroDAOSqlite();
+		// PerroDAOSqlite dao = new PerroDAOSqlite();
+		PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
 		System.out.println("-------------------------------------");
 		System.out.println("TOTAL numero de perros en la BBDD: " + dao.countDBRows());
 		System.out.println("-------------------------------------");
@@ -141,7 +153,7 @@ public class AppPerrera {
 		// Mostramos un listado con los perros
 		listar();
 
-		// validamos que introduzca un id de perro correcto
+		// variables
 		boolean flag = true;
 		boolean isError = true;
 		int id = 0;
@@ -150,7 +162,7 @@ public class AppPerrera {
 		do {
 			do {
 				try {
-					System.out.println("Introduce el ID del perro que quires borrar");
+					System.out.println("Introduce el ID del perro que quieres borrar");
 					id = Integer.parseInt(sc.nextLine());
 
 					// si la linea de arriba lanza excepcion, estas de abajo nunca se ejecutaran
@@ -162,8 +174,11 @@ public class AppPerrera {
 				}
 			} while (isError);
 
-			PerroDAOSqlite dao = new PerroDAOSqlite();
-			pEliminar = dao.recuperar(id);
+			// PerroDAOSqlite dao = new PerroDAOSqlite();
+			// PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
+			// pEliminar = dao.recuperar(id);
+
+			pEliminar = modelo.recuperar(id);
 
 			// pEliminar = modelo.recuperar(id);
 			if (pEliminar == null) {
@@ -211,47 +226,100 @@ public class AppPerrera {
 		// Mostramos un listado con los nombres de los perros
 		listar();
 
-		// Pedimos que introduzca el nombre del perro
-		System.out.println("Introduce el perro que quieres modificar");
-		String nombre = sc.nextLine();
+		// variables
+		boolean flag = true;
+		boolean isError = true;
+		int id = 0;
+		Perro pModificar = null;
 
-		Perro p = new Perro(nombre);
+		do {
+			do {
+				try {
+					System.out.println("Introduce el ID del perro que quieres modificar");
+					id = Integer.parseInt(sc.nextLine());
+
+					// si la linea de arriba lanza excepcion, estas de abajo nunca se ejecutaran
+					isError = false;
+				} catch (Exception e) {
+					// si quereis ver la traza de la Excepcion, usar e.printStackTrace()
+					// e.printStackTrace();
+					System.out.println("**error, no es un peso valido. Escribe un numero");
+				}
+			} while (isError);
+
+			// PerroDAOSqlite dao = new PerroDAOSqlite();
+			// PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
+			// pModificar = dao.recuperar(id);
+
+			pModificar = modelo.recuperar(id);
+
+			// pEliminar = modelo.recuperar(id);
+			if (pModificar == null) {
+				System.out.println("*Lo sentimos pero no existe ese perro");
+			} else {
+				flag = false;
+			}
+
+		} while (flag);
+
+		// Pedimos que introduzca el nombre del perro
+		// System.out.println("Introduce el perro que quieres modificar");
+
+		System.out.println(String.format("%3s %9s [%11s] %4s Kg %13s %s", pModificar.getId(), pModificar.getNombre(),
+				pModificar.getRaza(), Math.round(pModificar.getPeso() * 100.0) / 100.0,
+				(pModificar.isVacunado()) ? "vacunado" : "*sin Vacunar*", pModificar.getHistoria()));
 
 		// Pedimos que valor quiere modificar
 		System.out.println("");
-		System.out.println("**************************");
+		System.out.println("-------------------");
+		System.out.println("---   Modicar   ---");
+		System.out.println("-------------------");
 		System.out.println(" 1.- Nombre");
 		System.out.println(" 2.- Raza");
-		System.out.println("**************************");
+		System.out.println("");
+		System.out.println(" S.- Salir");
+		System.out.println("-------------------");
 		System.out.println("");
 
 		System.out.println("\n Selecciona una opción del menú:");
 
-		String opcionModificacion = "";
-		opcionModificacion = sc.nextLine();
+		String opcionModif = "";
+		opcionModif = sc.nextLine();
 
-		switch (opcionModificacion) {
-		case "1":
+		switch (opcionModif) {
+		case OP_NOMBRE:
 			// Modificamos el nombre
+			System.out.println("Introduce nuevo nombre del perro:");
 			String nuevoNombre = sc.nextLine();
-			p.setNombre(nuevoNombre);
 
-			System.out.println();
+			try {
+				pModificar.setNombre(nuevoNombre);
+				((PerroDAOSqlite) modelo).modificarCampo(pModificar, "nombre");
+				System.out.println("Nombre Perro modificado");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			break;
+
+		case OP_RAZA:
+			// Modificamos la raza
+			System.out.println("Introduce nueva raza del perro:");
+			String nuevaRaza = sc.nextLine();
+
+			try {
+				pModificar.setRaza(nuevaRaza);
+				((PerroDAOSqlite) modelo).modificarCampo(pModificar, "raza");
+				System.out.println("Raza Perro modificada");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		case OP_SALIR:
 			break;
 
 		default:
 			break;
 		}
-
-		//
-		for (Perro perro : lista) {
-			String nombrePerro = perro.getNombre();
-
-			if (nombrePerro.equalsIgnoreCase(nombre)) {
-				lista.remove(perro);
-				break;
-			}
-		} // End for
 
 	}
 
@@ -262,13 +330,15 @@ public class AppPerrera {
 	private static void inicializarDatos() {
 
 		// Inicializamos el ArrayList con 4 perros
-		lista.add(new Perro("Bubba"));
-		lista.add(new Perro("Laika"));
-		lista.add(new Perro("Rintintin"));
-		lista.add(new Perro("goffy"));
+		/*
+		 * try { modelo.crear(new Perro(1, "Bubba")); modelo.crear(new Perro(2,
+		 * "Laika")); modelo.crear(new Perro(3, "Rintintin")); modelo.crear(new Perro(4,
+		 * "goffy")); } catch (Exception e) { e.printStackTrace(); }
+		 */
 
 		// Este DAO se encarga de realizara la operaciones de CRUD contra la bbdd
-		PerroDAOSqlite dao = new PerroDAOSqlite();
+		// PerroDAOSqlite dao = new PerroDAOSqlite();
+		PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
 
 		int intNumero = dao.getLastId() + 1;
 		System.out.println("dao.getLastId() + 1 " + intNumero);

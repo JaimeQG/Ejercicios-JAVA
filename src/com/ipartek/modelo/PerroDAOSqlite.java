@@ -12,6 +12,23 @@ public class PerroDAOSqlite implements PerroDao {
 
 	private static final String PATH = "ddbb/perrera.db";
 
+	private static PerroDAOSqlite INSTANCE = null;
+
+	// Private constructor suppresses
+	private PerroDAOSqlite() {
+		super();
+	}
+
+	public synchronized static PerroDAOSqlite getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new PerroDAOSqlite();
+		}
+		return INSTANCE;
+	}
+
+	private static final String OP_NOMBRE = "nombre";
+	private static final String OP_RAZA = "raza";
+
 	@Override
 	public ArrayList<Perro> listar() {
 		final String SQL = "SELECT id, nombre, raza, peso, vacunado, historia FROM perro ORDER BY id ASC;";
@@ -97,16 +114,40 @@ public class PerroDAOSqlite implements PerroDao {
 		return p;
 	}
 
+	public Perro modificarCampo(Perro p, String campo) throws Exception {
+		Perro perro = null;
+		final String SQL = "UPDATE perro SET " + campo + " = ?  WHERE id = ?;";
+		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
+				PreparedStatement pst = conn.prepareStatement(SQL);) {
+
+			switch (campo) {
+			case OP_NOMBRE:
+				pst.setString(1, p.getNombre());
+				break;
+			case OP_RAZA:
+				pst.setString(1, p.getRaza());
+				break;
+			default:
+				break;
+			}
+
+			pst.setInt(2, p.getId());
+
+			pst.executeUpdate(); // CUIDADO no usar executeQuery
+		}
+
+		return perro;
+	}
+
 	@Override
 	public Perro modificar(Perro p) throws Exception {
 		Perro perro = null;
-		final String SQL = "UPDATE perro nombre = ? , peso = ? WHERE id = ?;";
+		final String SQL = "UPDATE perro SET nombre = ?  WHERE id = ?;";
 		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
 				PreparedStatement pst = conn.prepareStatement(SQL);) {
 
 			pst.setString(1, p.getNombre());
-			pst.setFloat(2, p.getPeso());
-			pst.setInt(3, p.getId());
+			pst.setInt(2, p.getId());
 
 			pst.executeUpdate(); // CUIDADO no usar executeQuery
 		}

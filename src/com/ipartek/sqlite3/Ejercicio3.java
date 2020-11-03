@@ -12,13 +12,14 @@ public class Ejercicio3 {
 	public static void main(String[] args) throws Exception {
 
 		// Este DAO se encarga de realizara la operaciones de CRUD contra la bbdd
-		PerroDAOSqlite dao = new PerroDAOSqlite();
+		// PerroDAOSqlite dao = new PerroDAOSqlite();
+		PerroDAOSqlite dao = PerroDAOSqlite.getInstance();
 
 		System.out.println(dao.getLastId());
 		String nombrePerro = "Perro" + (dao.getLastId() + 1);
 		Float pesoPerro = 34.5f / (float) (dao.getLastId() + 1);
 
-		Perro pNuevo = new Perro(nombrePerro, "callejero", pesoPerro, true, "la historia de " + nombrePerro + " ...");
+		Perro pNuevo = new Perro(nombrePerro, "callejero", pesoPerro);
 		try {
 			dao.crear(pNuevo); // insert
 		} catch (Exception e) {

@@ -1,4 +1,4 @@
-package mf0227.uf2404.actividad3;
+package com.ipartek.pojo;
 
 /**
  * La clase Libro tendrá los siguientes atributos:<br>

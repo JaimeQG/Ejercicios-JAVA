@@ -13,7 +13,7 @@ public interface ILibreria extends Singleton {
 	 *         <P>
 	 *         vacio no null
 	 */
-	ArrayList<Libro> listar();
+	ArrayList<LibroPrueba> listar();
 
 	/**
 	 * Recupera el detalle de un pojo
@@ -21,7 +21,7 @@ public interface ILibreria extends Singleton {
 	 * @param id identificador
 	 * @return pojo con sus datos o null si no encuentra por su id
 	 */
-	Libro recuperar(int id);
+	LibroPrueba recuperar(int id);
 
 	/**
 	 * Crea un nuevo pojo y cuando es guardado se le asigan una nueva id
@@ -30,7 +30,7 @@ public interface ILibreria extends Singleton {
 	 * @throws Exception si el nombre del pojo ya existe
 	 * @return pojo con su id actualizado
 	 */
-	Libro crear(Libro l) throws Exception;
+	LibroPrueba crear(LibroPrueba l) throws Exception;
 
 	/**
 	 * Modifica un pojo
@@ -39,7 +39,7 @@ public interface ILibreria extends Singleton {
 	 * @return pojo modificado
 	 * @throws Exception si no encuentra el pojo, o el nombre ya existe
 	 */
-	Libro modificar(Libro l) throws Exception;
+	LibroPrueba modificar(LibroPrueba l) throws Exception;
 
 	/**
 	 * Elimina el pojo gracias a su identificador

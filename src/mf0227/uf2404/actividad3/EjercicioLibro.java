@@ -35,6 +35,7 @@ public class EjercicioLibro {
 	public static void main(String[] args) {
 		boolean salir = false;
 
+		System.out.println("****************************************");
 		System.out.println("***********  APP   LIBRERIA  ***********");
 		sc = new Scanner(System.in);
 
@@ -55,7 +56,6 @@ public class EjercicioLibro {
 				modificar();
 				break;
 			case OP_SALIR:
-				System.out.println("Adios ...");
 				salir = true;
 				break;
 			default:
@@ -63,7 +63,7 @@ public class EjercicioLibro {
 			}
 		} while (!salir);
 
-		System.out.println(("************************ ADIOS, nos vemos pronto  ***********"));
+		System.out.println(("******  ADIOS, nos vemos pronto  *******"));
 
 		sc.close();
 	}
@@ -73,13 +73,13 @@ public class EjercicioLibro {
 	 * No aparece {@code @return} porque no retorna nada {@code void}
 	 */
 	private static void pintarMenu() {
-		System.out.println("**************************");
-		System.out.println(" 1.- Listar todos los libros");
-		System.out.println(" 2.- Crear un libro");
-		System.out.println(" 3.- Dar de baja un libro");
-		System.out.println(" 4.- Modificar un libro");
-		System.out.println(" S.- Salir");
-		System.out.println("**************************");
+		System.out.println("****************************************");
+		System.out.println(" [1].- Listar todos los libros");
+		System.out.println(" [2].- Crear un libro");
+		System.out.println(" [3].- Dar de baja un libro");
+		System.out.println(" [4].- Modificar un libro");
+		System.out.println(" [S].- Salir");
+		System.out.println("****************************************");
 
 		System.out.println("\n Selecciona una opción del menú:");
 
@@ -92,13 +92,13 @@ public class EjercicioLibro {
 	 */
 	private static void listar() {
 
-		ArrayList<Libro> libros = modelo.listar();
+		ArrayList<LibroPrueba> libros = modelo.listar();
 
 		System.out.println("-------------------------------------");
 		System.out.println("          LISTADO DE LIBROS   ");
 		System.out.println("-------------------------------------");
 
-		for (Libro libro : libros) {
+		for (LibroPrueba libro : libros) {
 			System.out.println(String.format("%2s %-15s ........... [%4s paginas] ", libro.getId(), libro.getNombre(),
 					libro.getNumeroPaginas()));
 		}
@@ -115,31 +115,22 @@ public class EjercicioLibro {
 	 * No aparece {@code @return} porque no retorna nada {@code void}
 	 */
 	private static void crear() {
+		// variables
+		int numeroPaginas = 0;
+		boolean isError = true;
 
 		// pedimos datos por consola
-		System.out.println("Introduzca nombre del libro: ");
+		System.out.println("Introduzca nombre del libro: "); // nombre libro
 		String nombre = sc.nextLine();
 
-		// Pedir numero de paginas del libro, repetir hasta que no haya error
-		boolean isError = true;
-		int numeroPaginas = 0;
-
-		do {
-			try {
-				System.out.println("Numero de páginas del libro:");
-				numeroPaginas = Integer.parseInt(sc.nextLine());
-
-				// si la linea de arriba lanza excepcion, estas de abajo nunca se ejecutaran
-				isError = false;
-			} catch (Exception e) {
-				// si quereis ver la traza de la Excepcion, usar e.printStackTrace()
-				// e.printStackTrace();
-				System.out.println("**error, no es un numero. Escribe un numero");
-			}
-		} while (isError);
+		try {
+			numeroPaginas = validarEnteros("numeroPaginas");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// Crear un libro y setear valores
-		Libro lNuevo = new Libro(nombre, numeroPaginas);
+		LibroPrueba lNuevo = new LibroPrueba(nombre, numeroPaginas);
 
 		// llamar al modelo para guardar en la bbdd
 		isError = true;
@@ -160,7 +151,6 @@ public class EjercicioLibro {
 				// e.printStackTrace();
 			}
 		} while (isError);
-
 	}
 
 	/**
@@ -175,7 +165,7 @@ public class EjercicioLibro {
 		boolean flag = true;
 		boolean isError = true;
 		int id = 0;
-		Libro lEliminar = null;
+		LibroPrueba lEliminar = null;
 
 		do {
 			do {
@@ -244,12 +234,14 @@ public class EjercicioLibro {
 	 */
 	private static void modificar() {
 
+		int numeroPaginas = 0;
+
 		// Mostramos por pantalla el listado de libros
 		listar();
 
 		System.out.println("Dime el ID del libro a modificar");
 		int id = Integer.parseInt(sc.nextLine());
-		Libro libro = modelo.recuperar(id);
+		LibroPrueba libro = modelo.recuperar(id);
 
 		if (libro == null) {
 			System.out.println("*** Lo sentimos pero no existe el libro con id " + id);
@@ -261,19 +253,17 @@ public class EjercicioLibro {
 			System.out.printf("nombre[%s] \n", libro.getNombre()); // nombre del libro
 			String nombre = sc.nextLine();
 
-			int numeroPaginas = validarEnteros("numeroPaginas"); // numero de paginas
+			try {
+				System.out.printf("numero paginas[%s] \n", libro.getNumeroPaginas());
+				numeroPaginas = validarEnteros("numeroPaginas"); // numero de paginas
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			// crear nuevo perro con los datos
-			Libro lModificar = new Libro();
+			LibroPrueba lModificar = new LibroPrueba();
 			lModificar.setId(libro.getId()); // id
 			lModificar.setNombre(("".equals(nombre)) ? libro.getNombre() : nombre); // nombre
-
-			// if (numeroPaginas != libro.getNumeroPaginas()) {
-			// lModificar.setNumeroPaginas(numeroPaginas);
-			// } else {
-			// lModificar.setNumeroPaginas(libro.getNumeroPaginas());
-			// }
-
 			lModificar.setNumeroPaginas(
 					numeroPaginas == libro.getNumeroPaginas() ? libro.getNumeroPaginas() : numeroPaginas);
 
@@ -289,9 +279,7 @@ public class EjercicioLibro {
 
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 
 	/**
@@ -301,11 +289,12 @@ public class EjercicioLibro {
 	 * @return valor de tipo entero
 	 */
 
-	private static int validarEnteros(String propiedad) {
+	private static int validarEnteros(String propiedad) throws Exception {
 
 		boolean isError = true;
 		int intEntero = 0;
 
+		// Repetir hasta que no haya error
 		do {
 			System.out.println("Introduzca el " + propiedad + " del libro: ");
 			try {

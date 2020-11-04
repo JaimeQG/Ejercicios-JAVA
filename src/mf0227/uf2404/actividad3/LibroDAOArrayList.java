@@ -7,7 +7,7 @@ public class LibroDAOArrayList implements ILibreria {
 	private int indice = 0;
 	private boolean flag = false;
 
-	private ArrayList<Libro> lista = new ArrayList<Libro>();
+	private ArrayList<LibroPrueba> lista = new ArrayList<LibroPrueba>();
 	private static LibroDAOArrayList INSTANCE = null;
 
 	public static synchronized LibroDAOArrayList getInstance() {
@@ -21,25 +21,25 @@ public class LibroDAOArrayList implements ILibreria {
 
 	public LibroDAOArrayList() {
 		super();
-		lista.add(new Libro(1, "Bubba", 500));
-		lista.add(new Libro(2, "Laika", 400));
-		lista.add(new Libro(3, "Rintintin", 450));
-		lista.add(new Libro(4, "goofy", 1000));
+		lista.add(new LibroPrueba(1, "Bubba", 500));
+		lista.add(new LibroPrueba(2, "Laika", 400));
+		lista.add(new LibroPrueba(3, "Rintintin", 450));
+		lista.add(new LibroPrueba(4, "goofy", 1000));
 		indice = 5;
 	}
 
 	@Override
-	public ArrayList<Libro> listar() {
+	public ArrayList<LibroPrueba> listar() {
 
 		return lista;
 	}
 
 	@Override
-	public Libro recuperar(int id) {
+	public LibroPrueba recuperar(int id) {
 
-		Libro l = null;
+		LibroPrueba l = null;
 
-		for (Libro libro : lista) {
+		for (LibroPrueba libro : lista) {
 			int indice = libro.getId();
 
 			if (indice == id) {
@@ -53,7 +53,7 @@ public class LibroDAOArrayList implements ILibreria {
 	}
 
 	@Override
-	public Libro crear(Libro l) throws Exception {
+	public LibroPrueba crear(LibroPrueba l) throws Exception {
 
 		l.setId(indice);
 		lista.add(l);
@@ -63,24 +63,24 @@ public class LibroDAOArrayList implements ILibreria {
 	}
 
 	@Override
-	public Libro modificar(Libro l) throws Exception {
+	public LibroPrueba modificar(LibroPrueba l) throws Exception {
 
 		int id = l.getId();
 
-		Libro lBuscar = recuperar(id);
+		LibroPrueba lBuscar = recuperar(id);
 		if (lBuscar == null) {
 			throw new Exception("No existe el libro con id=" + id);
 		}
 
 		String nombre = l.getNombre();
-		for (Libro libro : lista) {
+		for (LibroPrueba libro : lista) {
 			if (nombre.equals(libro.getNombre()) && id != libro.getId()) {
 				throw new Exception("El nombre ya existe" + nombre);
 			}
 		}
 
 		int posicionArray = 0;
-		for (Libro libro : lista) {
+		for (LibroPrueba libro : lista) {
 			int indice = libro.getId();
 
 			if (indice == id) {
@@ -91,7 +91,6 @@ public class LibroDAOArrayList implements ILibreria {
 
 		eliminar(id);
 		lista.add(posicionArray, l);
-		// lista.add(l);
 
 		return l;
 	}
@@ -100,25 +99,25 @@ public class LibroDAOArrayList implements ILibreria {
 	public boolean eliminar(int id) throws Exception {
 		// TODO hacer un for y buscar por id y eliminar de la posicion encontrada
 
-		if (id <= 0) {
-			throw new Exception("*** error: El id no puede ser <=0");
-		}
-
-		for (Libro libro : lista) {
-			int indice = libro.getId();
-
-			if (indice == id) {
-				lista.remove(libro);
-				flag = true;
-				break;
-			}
-		} // End for
-
-		if (!flag) {
-			throw new Exception("*** error: No se encuentra el perro");
+		LibroPrueba lBuscar = recuperar(id);
+		if (lBuscar == null) {
+			throw new Exception("No existe el libro con id=" + id);
 		} else {
-			return true;
+			lista.remove(lBuscar);
+			flag = true;
 		}
+
+		// for (Libro libro : lista) {
+		// int indice = libro.getId();
+
+		// if (indice == id) {
+		// lista.remove(libro);
+		// flag = true;
+		// break;
+		// }
+		// } // End for
+
+		return flag;
 
 	}
 

@@ -1,4 +1,4 @@
-package mf0227.uf2404.actividad3;
+package mf0227.uf2404.actividad3_1;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ public class LibroDAOArrayList implements ILibreria {
 	private int indice = 0;
 	private boolean flag = false;
 
-	private ArrayList<LibroPrueba> lista = new ArrayList<LibroPrueba>();
+	private static ArrayList<LibroPrueba> lista = new ArrayList<LibroPrueba>();
 	private static LibroDAOArrayList INSTANCE = null;
 
 	public static synchronized LibroDAOArrayList getInstance() {

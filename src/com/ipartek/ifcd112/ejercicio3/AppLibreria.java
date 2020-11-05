@@ -1,6 +1,5 @@
 package com.ipartek.ifcd112.ejercicio3;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.ipartek.pojo.Libro;
@@ -24,9 +23,11 @@ public class AppLibreria extends AppGestion {
 
 	// cuando usamos un patron singleton, el constructor es privado
 	// deberemos usar el metodo getInstance();
-	static private ImplLibroDao modelo = ImplLibroDao.getInstance();
+	static private ImplLibroDao dao = ImplLibroDao.getInstance();
+	// private static LibroDao dao = ImplLibroDao.getInstance();
 
 	static String opcion = "";
+	private static AppLibreria app = new AppLibreria();
 
 	public static void main(String[] args) {
 
@@ -100,7 +101,7 @@ public class AppLibreria extends AppGestion {
 			}
 
 			// Obtenemos el libro
-			lEliminar = modelo.getById(id); // recuperamos el libro a suprimir dentro del ArrayList
+			lEliminar = dao.getById(id); // recuperamos el libro a suprimir dentro del ArrayList
 
 			if (lEliminar == null) {
 				System.out.println("*** Lo sentimos pero no existe ese libro");
@@ -123,13 +124,13 @@ public class AppLibreria extends AppGestion {
 
 			} else { // comprobar nombre
 
-				if (lEliminar.getNombre().equalsIgnoreCase(nombre)) {
+				if (lEliminar.getNombre().equals(nombre)) {
 
-					if (modelo.delete(id)) { // Si se borra el libro del HashMap
+					if (dao.delete(id)) { // Si se borra el libro del HashMap
 						flag = false;
 						System.out.println("-------------------------------------");
-						System.out.printf("Hemos dado de baja el libro: %s [%s paginas] \n", lEliminar.getNombre(),
-								lEliminar.getNumeroPaginas());
+						System.out.printf("Hemos dado de baja el libro: [%s] %s [%s paginas] \n", lEliminar.getId(),
+								lEliminar.getNombre(), lEliminar.getNumeroPaginas());
 						System.out.println("-------------------------------------");
 
 					} else {
@@ -153,19 +154,23 @@ public class AppLibreria extends AppGestion {
 	 */
 
 	private static void listar() {
-		ArrayList<Libro> libros = (ArrayList<Libro>) modelo.getAll();
+		// ArrayList<Libro> libros = (ArrayList<Libro>) dao.getAll();
 
 		System.out.println("-------------------------------------");
 		System.out.println("          LISTADO DE LIBROS   ");
 		System.out.println("-------------------------------------");
 
-		for (Libro libro : libros) {
-			System.out.println(String.format("%2s %-17s ........... [%4s paginas] ", libro.getId(), libro.getNombre(),
+		int contador = 0;
+
+		for (Libro libro : dao.getAll()) {
+			System.out.println(String.format("[%s] %-17s ........... [%4s paginas] ", libro.getId(), libro.getNombre(),
 					libro.getNumeroPaginas()));
+			contador++;
 		}
 
 		System.out.println("-------------------------------------");
-		System.out.println("TOTAL numero de libros en la lista: " + libros.size());
+		System.out.println("TOTAL numero de libros en la lista: " + contador);
+		// System.out.println("TOTAL numero de libros en la lista: " + libros.size());
 		System.out.println("-------------------------------------");
 
 	}
@@ -194,14 +199,14 @@ public class AppLibreria extends AppGestion {
 		}
 
 		// Crear un libro con los atributos introducidos
-		Libro lNuevo = new Libro(nombre, numeroPaginas);
+		Libro lNuevo = new Libro(0, nombre, numeroPaginas);
 
-		// llamar al modelo para guardar en el HashMap
+		// llamar al dao para guardar en el HashMap
 		isError = true;
 
 		do {
 
-			if (modelo.insert(lNuevo)) {
+			if (dao.insert(lNuevo)) {
 				System.out.println("-------------------------------------");
 				System.out.println("Libro guardado !!!");
 				System.out.println(lNuevo);

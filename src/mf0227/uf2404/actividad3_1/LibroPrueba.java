@@ -1,4 +1,4 @@
-package mf0227.uf2404.actividad3;
+package mf0227.uf2404.actividad3_1;
 
 /**
  * La clase Libro tendrá los siguientes atributos:<br>

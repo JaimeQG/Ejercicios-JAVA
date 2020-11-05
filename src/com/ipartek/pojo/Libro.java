@@ -12,7 +12,7 @@ package com.ipartek.pojo;
  *
  */
 
-public class Libro {
+public class Libro implements Comparable<Libro> {
 
 	// Atributos, deben ser siempre privados
 	private int id;
@@ -66,6 +66,12 @@ public class Libro {
 	@Override
 	public String toString() {
 		return "Libro [id=" + id + ", nombre=" + nombre + ", numeroPaginas=" + numeroPaginas + "]";
+	}
+
+	@Override
+	public int compareTo(Libro o) {
+		return this.nombre.compareTo(o.nombre);
+		// return this.paginas - o.paginas;
 	}
 
 }

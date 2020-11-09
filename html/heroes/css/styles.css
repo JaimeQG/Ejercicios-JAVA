@@ -1,0 +1,50 @@
+/* Hoja de estilos */
+
+@import 'reset.css';
+
+/* variables globales */
+:root {
+    --blanco: #FFF;
+    --marron: peru;
+    --verde: lime;
+    --negro:#000;
+}
+
+/* media para impresoras, también se puede declarar en html */
+@media print {
+    body {
+        font-size: 10pt;
+        color: green;
+    }
+}
+
+header {
+    /*background-color: var(--marron);*/
+    /* prefijos para dar soporte a diferentes navegadores:
+
+    -moz- para Firefox y los demás navegadores de Gecko,
+    -webkit- para los navegadores WebKit: Chrome, Safari, Edge, etc.
+    -ms- para Microsoft (Internet Explorer),
+    -o- para Presto, el antiguo motor de Opera.
+
+    */
+    background-image: -o-linear-gradient(top, #D7D 0%, #068 100%);
+    background-image: -webkit-linear-gradient(top, #D7D 0%, #068 100%);
+    background-image: -ms-linear-gradient(top, #D7D 0%, #068 100%);
+    color:var(--blanco);
+}
+
+section {
+    background-color: var(--verde);
+}
+
+footer {
+    background-color: pink;
+}
+
+h1 {
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--negro);
+    
+}

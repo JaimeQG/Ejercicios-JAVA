@@ -5,61 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marvel DC</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles_impresora.css" media = "print">
 </head>
 <body>
    <header>
        <h1>MarvelDCpedia</h1>
-       <nav>
-           <ul>
+   </header>
+    <nav id="header">
+        <ul class="container">
                <li>Home</li>
-               <li><a href = "heroes.html">Héroes</a></li>
-               <li><a href = "villanos.html">Villanos</a></li>
-               <li><a href = "comics.html">Comics</a></li>
-               <li><a href = "acercade.html">Acerca de</a></li>
+               <li><a class="enlace" href = "heroes.html">Héroes</a></li>
+               <li><a class="enlace" href = "villanos.html">Villanos</a></li>
+               <li><a class="enlace" href = "comics.html">Comics</a></li>
+               <li><a class="enlace" href = "acercade.html">Acerca de</a></li>
            </ul>
        </nav>
-   </header>
-   <section>
-      <article>
-              <h2>Presentación</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea dolorum, consequuntur dolorem quaerat libero in ipsam quae consectetur, omnis similique fugit culpa. At facere labore, saepe nobis incidunt vel veritatis.</p>
-              <p>Est aspernatur et maiores excepturi necessitatibus quam minima veritatis ducimus rem culpa, officiis, similique quas aliquid iure quia ratione ad natus animi incidunt adipisci unde pariatur vitae praesentium harum! Id?</p>
-              <img src="images/Imagen1.jfif" alt="imagen aleatoria de deportes" />
-              <img src="images/Imagen2.jfif" alt="imagen aleatoria de deportes" />
-              <p>Delectus reiciendis laudantium vitae sed vero officia velit magni corporis. Harum commodi ea sequi aspernatur, debitis officiis ipsam illo veritatis temporibus quo inventore exercitationem! Possimus tempora obcaecati consequuntur deleniti explicabo?</p>
-              <p>Quam repudiandae assumenda eligendi. Architecto labore dolores ad beatae sunt distinctio nam, numquam, earum consequatur ab quos error perspiciatis soluta. Blanditiis, neque aliquid. Ex exercitationem error sunt vel inventore repudiandae?</p>
-              <p>Quisquam placeat quo sapiente aspernatur nam quae animi blanditiis, est neque iusto fugit nemo, illo possimus suscipit? Similique ad enim asperiores porro provident officiis tempora, accusantium voluptates consequatur tempore eligendi?</p>
-      </article>
-      <article>
-        <h2>SuperHeroe de la semana</h2>
-        <img src="images/Imagen3.jfif" alt="imagen aleatoria de deportes" />
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus unde facere, quasi ea obcaecati ab vero magnam perferendis aut necessitatibus repudiandae, sit nam optio, consequuntur explicabo natus? Quibusdam, dolores maxime.</p>
-        <p>Accusamus libero culpa inventore tempora magnam quos, omnis dolorum magni velit fugit minima necessitatibus rem architecto natus, mollitia vero laudantium dignissimos. Sunt dolorem error numquam voluptate beatae corporis nam facilis!</p>
-      </article>
-   </section>
+
+    <main>
+        <section>
+            <article>
+                <h2>Presentación</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea dolorum, consequuntur dolorem quaerat libero in ipsam quae consectetur, omnis similique fugit culpa. At facere labore, saepe nobis incidunt vel veritatis.</p>
+                <p>Est aspernatur et maiores excepturi necessitatibus quam minima veritatis ducimus rem culpa, officiis, similique quas aliquid iure quia ratione ad natus animi incidunt adipisci unde pariatur vitae praesentium harum! Id?</p>
+                <img src="images/Imagen1.jfif" alt="imagen aleatoria de deportes" />
+                <img src="images/Imagen2.jfif" alt="imagen aleatoria de deportes" />
+                <p>Delectus reiciendis laudantium vitae sed vero officia velit magni corporis. Harum commodi ea sequi aspernatur, debitis officiis ipsam illo veritatis temporibus quo inventore exercitationem! Possimus tempora obcaecati consequuntur deleniti explicabo?</p>
+                <p>Quam repudiandae assumenda eligendi. Architecto labore dolores ad beatae sunt distinctio nam, numquam, earum consequatur ab quos error perspiciatis soluta. Blanditiis, neque aliquid. Ex exercitationem error sunt vel inventore repudiandae?</p>
+                <p>Quisquam placeat quo sapiente aspernatur nam quae animi blanditiis, est neque iusto fugit nemo, illo possimus suscipit? Similique ad enim asperiores porro provident officiis tempora, accusantium voluptates consequatur tempore eligendi?</p>
+            </article>
+
+            <article>
+                <h2>SuperHeroe de la semana</h2>
+                <img src="images/Imagen3.jfif" alt="imagen aleatoria de deportes" />
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus unde facere, quasi ea obcaecati ab vero magnam perferendis aut necessitatibus repudiandae, sit nam optio, consequuntur explicabo natus? Quibusdam, dolores maxime.</p>
+                <p>Accusamus libero culpa inventore tempora magnam quos, omnis dolorum magni velit fugit minima necessitatibus rem architecto natus, mollitia vero laudantium dignissimos. Sunt dolorem error numquam voluptate beatae corporis nam facilis!</p>
+            </article>
+        </section>
+    </main>
+
    <footer>
+    <div class="container">
+       <section>
+        <nav>
+            <ul>
+                <li><a href="#">Cookies</a></li>
+                <li><a href="#">Aspectos legales</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>  
+       </section>
+       <section>
+        <img class="logo" src="images/OIP.jfif" alt="imagen aleatoria de deportes" />
+        <img class="logo" src="images/DC.jfif" alt="imagen aleatoria de deportes" /></td>
+       </section>
+       <section>
+        <ul class="text-right">
+            <li><a href="https://www.marvel.com/" target="_blank">Web de Marvel</a></li>
+            <li><a href="#">Pagina Web2</a></li>
+            <li><a href="#">Pagina Web3</a></li>
+        </ul>
+       </section>
+<!-- 
+            las tablas se usan solo para mostrar datos, no para maquetar, 
+            pasar todo a los section de arriba  
     <table>
         <tbody>
-            <tr>
+            <tr> -->
                 <!-- 1 Columna -->
-                <td>
-                    <nav>
-                        <ul>
-                            <li><a href="#">Cookies</a></li>
-                            <li><a href="#">Aspectos legales</a></li>
-                            <li><a href="#">Contacto</a></li>
-                        </ul>
-                    </nav>  
-                </td>
+                <!--<td>
+                    
+                </td> -->
                  <!-- 2 Columna -->
-                <td><img src="images/OIP.jfif" alt="imagen aleatoria de deportes" />
-                    <img src="images/DC.jfif" alt="imagen aleatoria de deportes" /></td>
+                <!--<td>-->
                 <!-- 3 Columna -->   
-                <td><ul><li><a href="https://www.marvel.com/" target="_blank">Web de Marvel</a></li></ul></td>
+                <!--<td></td>
             </tr>
         </tbody>
-    </table>
+    </table>-->
+        </div>
    </footer>
 </body>
 </html>
